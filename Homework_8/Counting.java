@@ -8,11 +8,9 @@ public class Counting {
 		Integer[] C = new Integer[k + 1];
 
 		// Skipped initilizing 0 values in C
-		/*
-		 * for (int i = 0; i <= k; i++){
-		 * C[i] = 0;
-		 * }
-		 */
+		for (int i = 0; i < k+1; i++){
+			C[i] = 0;
+		}
 
 		// Create Histogram of A in C
 		for (int j = 0; j < A.length; j++) {
@@ -20,13 +18,13 @@ public class Counting {
 		}
 
 		// Sum values preceding each index of C (values' spots in sorted array)
-		for (int i = 1; i <= k; i++) {
+		for (int i = 1; i < k+1; i++) {
 			C[i] = C[i] + C[i - 1];
 		}
 
 		// Using addresses from C, place values sorted into B
-		for (int j = A.length - 1; j >= 0; j++) {
-			B[C[C[j]]] = A[j];
+		for (int j = A.length - 1; j >= 0; j--) {
+			B[C[A[j]]-1] = A[j];
 			C[A[j]]--;
 		}
 
