@@ -6,7 +6,7 @@ public class Main {
 
 		// prints the values and makes sure they are sorted!
 		for (Integer x : A) {
-			System.out.print(x);
+			System.out.print(x + " ");
 		}
 
 		System.out.println();
@@ -16,7 +16,7 @@ public class Main {
 
 		// prints the values and makes sure they are sorted!
 		for (Integer x : B) {
-			System.out.print(x);
+			System.out.print(x + " ");
 		}
 	}
 }

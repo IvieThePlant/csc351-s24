@@ -14,24 +14,24 @@ public class Merge {
     // Sorts two half lists back together.
     public static void squish(Integer[] A, int p, int q, int r) {
         // Find the lengths of each half
-        int none = q - p + 1;
-        int ntwo = r - q;
+        int nOne = q - p + 1;
+        int nTwo = r - q;
 
         // Create empty arrays to store each half
-        Integer[] Left  = new Integer[none+1];
-        Integer[] Right = new Integer[ntwo+1];
+        Integer[] Left = new Integer[nOne + 1];
+        Integer[] Right = new Integer[nTwo + 1];
 
         // Copy halves into subarrays
-        for (int i = 0; i <= none; i++) {
-            Left[i]  = A[p+i];
+        for (int i = 0; i < nOne; i++) {
+            Left[i] = A[p + i];
         }
-        for (int j = 0; j <= ntwo; j++) {
-            Right[j] = A[q+j];
+        for (int j = 0; j < nTwo; j++) {
+            Right[j] = A[q + j + 1];
         }
 
         // Set the last value of each half to infinity
-        Left[none]  = 999999999;
-        Right[ntwo] = 999999999;
+        Left[nOne] = 999999;
+        Right[nTwo] = 999999;
 
         // Initialize two pointers starting at each half
         int i = 0;
