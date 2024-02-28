@@ -9,19 +9,20 @@ public class Insertion<T> implements Sorter<T> {
     /** Counter of compare operations */
     long count = 0;
 
-
-    /** Constructor for Insertion Sort to set comparator
-    *
-    * @param order Comparator to establish ordering of array elements.
-    */
+    /**
+     * Constructor for Insertion Sort to set comparator
+     *
+     * @param order Comparator to establish ordering of array elements.
+     */
     public Insertion(Comparator<T> order) {
         orderBy = order;
     }
 
-    /** Sorts specified array using Insertion Sort. Inplace sorter.
-    *
-    * @param array Array to be sorted.
-    */
+    /**
+     * Sorts specified array using Insertion Sort. Inplace sorter.
+     *
+     * @param array Array to be sorted.
+     */
     public void sort(T[] array) {
 
         // Reset count back to 0
@@ -31,13 +32,16 @@ public class Insertion<T> implements Sorter<T> {
             // Insert A[j] into the sorted sequence A[0...j-1]
             T key = array[j];
             int i = j - 1;
+            System.out.println(key);
+            System.out.println(array[i] + " " + i);
             while (i >= 0 && 0 < orderBy.compare(array[i], key)) {
+                System.out.println("here");
                 count++;
-                array[i+1] = array[i];
-                i--; 
+                array[i + 1] = array[i];
+                i--;
             }
             count++;
-            array[i+1] = key;
+            array[i + 1] = key;
         }
     } // end sort(T[])
 
