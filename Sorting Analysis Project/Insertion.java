@@ -32,10 +32,7 @@ public class Insertion<T> implements Sorter<T> {
             // Insert A[j] into the sorted sequence A[0...j-1]
             T key = array[j];
             int i = j - 1;
-            System.out.println(key);
-            System.out.println(array[i] + " " + i);
             while (i >= 0 && 0 < orderBy.compare(array[i], key)) {
-                System.out.println("here");
                 count++;
                 array[i + 1] = array[i];
                 i--;
