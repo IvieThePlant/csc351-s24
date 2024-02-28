@@ -27,14 +27,18 @@ public class Insertion<T> implements Sorter<T> {
         // Reset count back to 0
         count = 0;
 
-        // _________________________________________________________________
-        // TODO ___________ COMPLETE INSERTION SORT BELOW __________________
-        // ________________   IMPORTANT TO COMMENT YOUR CODE _______________
-
-
-
-        // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+        for (int j = 1; j < array.length; j++) {
+            // Insert A[j] into the sorted sequence A[0...j-1]
+            T key = array[j];
+            int i = j - 1;
+            while (i >= 0 && 0 < orderBy.compare(array[i], key)) {
+                count++;
+                array[i+1] = array[i];
+                i--; 
+            }
+            count++;
+            array[i+1] = key;
+        }
     } // end sort(T[])
 
     @Override

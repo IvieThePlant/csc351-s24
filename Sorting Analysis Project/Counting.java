@@ -43,7 +43,6 @@ public class Counting<T> implements Sorter<T> {
      */
     @Override
     public void sort(T[] array) {
-
         /*
          * Counting sort is not an in-place sorting algorithm.
          * To work around this, first the contents of array are copied
@@ -58,7 +57,7 @@ public class Counting<T> implements Sorter<T> {
         }
 
         // Find the Max Value
-        int k = findMax(array);
+        int k = findMax(unsorted);
 
         // Declare an empty array
         Integer[] C = new Integer[k + 1];
@@ -69,24 +68,22 @@ public class Counting<T> implements Sorter<T> {
         }
 
         // Create Histogram of A in C
-        for (int j = 0; j < array.length; j++) {
-            C[array[j]] = C[array[j]] + 1;
+        for (int j = 0; j < unsorted.length; j++) {
+            C[keyGetter.apply(unsorted[j])] = C[keyGetter.apply(unsorted[j])] + 1;
+            count++;
         }
 
         // Sum values preceding each index of C (values' spots in sorted array)
         for (int i = 1; i < C.length; i++) {
             C[i] = C[i] + C[i - 1];
+            count++;
         }
 
         // Using addresses from C, place values sorted into B
-        for (int j = A.length - 1; j >= 0; j--) {
-            B[C[A[j]] - 1] = A[j];
-            C[A[j]] = C[A[j]] - 1;
-        }
-
-        // Copy sorted B back onto A
-        for (int i = 0; i < A.length; i++) {
-            A[i] = B[i];
+        for (int j = unsorted.length - 1; j >= 0; j--) {
+            array[C[keyGetter.apply(unsorted[j])] - 1] = unsorted[j];
+            C[keyGetter.apply(unsorted[j])] = C[keyGetter.apply(unsorted[j])] - 1;
+            count++;
         }
 
     } // end sort(T[])
@@ -98,6 +95,7 @@ public class Counting<T> implements Sorter<T> {
             if (valueOf > max) {
                 max = valueOf;
             }
+            count++;
         }
         return max;
     } // end findMax()

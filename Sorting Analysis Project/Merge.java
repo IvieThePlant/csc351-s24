@@ -29,7 +29,7 @@ public class Merge<T> implements Sorter<T> {
         // Reset count back to 0
         count = 0;
 
-        reSort(array, 0, array.length);
+        reSort(array, 0, array.length - 1);
 
     } // end sort(T[])
 
@@ -44,7 +44,7 @@ public class Merge<T> implements Sorter<T> {
             squish(A, p, q, r);
         }
         count++;
-    }
+    } // end reSort(T[], int, int)
 
     // Sorts two half lists back together.
     public void squish(T[] A, int p, int q, int r) {
@@ -87,7 +87,7 @@ public class Merge<T> implements Sorter<T> {
             }
             count++;
         }
-    }
+    } // end squish(T[], int, int, int)
 
     @Override
     public void setComparator(Comparator<T> order) {
