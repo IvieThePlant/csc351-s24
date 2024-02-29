@@ -93,6 +93,10 @@ public class Experiment {
 				algorithmString = "radix";
 				algo = new Radix<AlphaNumeric>(AlphaNumeric.numberGetter);
 				break;
+			case "tim":
+				algorithmString = "timsort";
+				algo = new TimSort<AlphaNumeric>(orderBy);
+				break;
 			// case "quick": // not yet implemented
 			// title = "Sorting with RANDOMIZED QUICK"
 			// algo = new Quick<AlphaNumeric>(orderBy);

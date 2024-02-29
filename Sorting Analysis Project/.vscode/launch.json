@@ -30,7 +30,7 @@
             "name": "Test all",
             "request": "launch",
             "mainClass": "Test",
-            "args": "counting merge insertion",
+            "args": "counting merge insertion tim",
             "projectName": "Sorting Analysis Project_29a0f119"
         }
     ]
