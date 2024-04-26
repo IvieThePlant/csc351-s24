@@ -5,7 +5,7 @@ import java.util.ArrayList;
 Node within a Graph depicting roads, which have been read in from a file
 (based on Travel Maps from https://travelmapping.net/graphs/). 
 */
-public class Vertex {
+public class Vertex implements Comparable<Vertex> {
 	
 	/** Roadway intersection with description and position (latitude, longitude) */
 	private final Waypoint point;
@@ -44,6 +44,14 @@ public class Vertex {
 			}
 		}
 		return vertexString;
+	}
+
+	/**
+ 	* Basis of comparison
+  	*/
+	@Override
+	public int compareTo(Vertex otehr) {
+		return distance.compareTo(other.distance);
 	}
 	
 	/**
