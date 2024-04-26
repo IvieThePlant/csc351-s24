@@ -50,7 +50,7 @@ public class Vertex implements Comparable<Vertex> {
  	* Basis of comparison
   	*/
 	@Override
-	public int compareTo(Vertex otehr) {
+	public int compareTo(Vertex other) {
 		return distance.compareTo(other.distance);
 	}
 	
