@@ -66,7 +66,7 @@ public class Vertex implements Comparable<Vertex> {
 	
 	// getter only - do not want user to modify waypoing
 	public Waypoint point() {
-		return point();
+		return point;
 	}
 
 	public Vertex parent() {
