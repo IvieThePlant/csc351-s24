@@ -7,7 +7,7 @@ A very small sample graph has been provided for testing purposes (amsterdamNY.tm
 To execute the code, you will be using command-line arguments in this form:
 
 ```terminal
-java Main amsterdamNY.tmg 5 bfs
+java Main amsterdamNY.tmg 5 dijkstra
 ```
 
 In this example, Main will create a graph from the file __amsterdamNY.tmg__, then it will perform a Breadth-First Search (bfs) using Waypoint[5] as its source and determine a path to every other reachable Waypoint. Waypoints have a unique ID that correspond to their ordering within the file, which is also how the edges are indicated in the file.
