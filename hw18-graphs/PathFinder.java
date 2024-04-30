@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
 public class PathFinder {
 
 	public static void findPath(RoadGraph graph, int point1, String algo) {
@@ -16,19 +19,6 @@ public class PathFinder {
 			Dijkstra(graph, point1);
 			return;
 		}
-
-		/*
-		 * Create the queue, appropriate for the type of traversal
-		 * 
-		 * push the starting waypoint onto the queue
-		 * while the queue is not empty
-		 * pop from the queue
-		 * for each adjacent waypoint of that popped vertex
-		 * if adjacent not yet visited (visited will be false)
-		 * push onto the queue
-		 * set parent
-		 * set as visited
-		 */
 
 		// Push the starting waypoint onto the queue
 		Q.push(graph.vertices.get(point1));
@@ -63,25 +53,59 @@ public class PathFinder {
 		}
 	}
 
-	public static void Dijkstra(RoadGraph G, int s) {
+	private static void Dijkstra(RoadGraph G, int s) {
 		// Initialize-Single-Source(G, s)
+		for (Vertex v : G.vertices) {
+			v.distance(Double.POSITIVE_INFINITY);
+			v.parent(null);
+		}
 
+		G.vertices.get(s).distance(0.0);
+
+		// Initialize solution array
+		ArrayList<Vertex> S = new ArrayList<>();
+
+		// Initalize queue
+		PriorityQueue<Vertex> Q = new PriorityQueue<>();
+
+		// Push all vertices to queue
+		for (Vertex x : G.vertices) {
+			Q.add(x);
+		}
+
+		// Process the queue
+		while (!Q.isEmpty()) {
+			Vertex u = Q.poll();
+			System.out.println("*u.d = " + u.distance());
+			S.add(u);
+
+			// Process each adjacent vertex
+			for (RoadSegment edge : u.adjacent()) {
+				// Find other point
+				Vertex v;
+				if (u.point().equals(edge.point1())) {
+					v = G.vertices.get(edge.point2().ID());
+				} else {
+					v = G.vertices.get(edge.point1().ID());
+				}
+				System.out.println("v.d = " + v.distance());
+				System.out.println("(" + edge.point1().ID() + ", " + edge.point2().ID() + ")");
+				Relax(u, v, edge, Q);
+
+			}
+		}
 	}
 
-	/**
-	 * Dijkstra(G, w, s)
-	 * Initialize-Single-Source(G, s)
-	 * S = 0
-	 * Q = G.V
-	 * while Q != 0
-	 * u = Extract-Min(Q)
-	 * S = S union {u}
-	 * for each vertex v in G.Adj[u]
-	 * Relax(u, v, w)
-	 * 
-	 * Relax(u, v, w)
-	 * if v.d > u.d + w(u, v)
-	 * v.d = u.d + w(u, v)
-	 * v.p = u
-	 */
+	// Relax the distance of v if edge is shorter
+	private static void Relax(Vertex u, Vertex v, RoadSegment edge, PriorityQueue<Vertex> Q) {
+		System.out.println("edge.d = " + edge.distance());
+		if (v.distance() > u.distance() + edge.distance()) {
+			v.distance(u.distance() + edge.distance());
+			v.parent(u);
+			System.out.println("v.d = " + v.distance());
+			System.out.println("v.p = " + v.parent().distance());
+			Q.remove(v);
+			Q.add(v);
+		}
+	}
 }
